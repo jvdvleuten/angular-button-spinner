@@ -7,7 +7,8 @@
   ],
   "description": "Directive to show a spinner during loading in a button",
   "main": [
-	"dist/**/*.*"
+	"dist/angular-button-spinner.js"
+	"dist/angular-button-spinner.min.js"
   ],
   "keywords": [
     "Angular",
