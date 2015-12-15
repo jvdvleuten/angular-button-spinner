@@ -6,10 +6,7 @@
 		"Johan van der Vleuten <jvdvleuten@gmail.com>"
 	],
 	"description" : "Directive to show a spinner during loading in a button",
-	"main" : [
-		"dist/angular-button-spinner.js",
-		"dist/angular-button-spinner.min.js"
-	],
+	"main" : "dist/angular-button-spinner.js",
 	"keywords" : [
 		"Angular",
 		"AngularJS",
