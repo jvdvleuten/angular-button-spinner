@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>angular-button-spinner example</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+	<div ng-app="MyApp" class="container" ng-cloak>
+		<div ng-controller="MyController">
+			<h1>angular-button-spinners examples</h1>
+			<h2>Example controller</h2>
+			<p>The example controller controls the loading variable in the scope. It resets after 2 seconds.</p>
+			<pre>
+angular.module('MyApp').controller('MyController', ['$scope','$timeout',
+	function ($scope, $timeout) {
+		
+		$scope.loading = false;
+		
+		$scope.toggleLoading = function() {
+			$scope.loading = true;
+			
+			$timeout(function() { 
+				$scope.loading = false;
+			}, 2000);
+		};
+	
+	}
+]);</pre>
+
+			<h2>Spinner only</h2>
+			<pre>&lt;a class=&quot;btn btn-success&quot; ng-click=&quot;toggleLoading()&quot; <strong>button-spinner=&quot;loading&quot;</strong>&gt;Save&lt;/a&gt;</pre>
+			<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading">Save</a>
+
+			<h2>Append icon</h2>
+			<pre>&lt;a class=&quot;btn btn-success&quot; ng-click=&quot;toggleLoading()&quot; <strong>button-spinner=&quot;loading&quot; button-append=&quot;fa fa-chevron-right&quot;</strong>&gt;Next&lt;/a&gt;</pre>
+			<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading" button-append="fa fa-chevron-right">Next</a>
+
+			<h2>Prepend icon</h2>
+			<pre>&lt;a class=&quot;btn btn-success&quot; ng-click=&quot;toggleLoading()&quot; <strong>button-spinner=&quot;loading&quot; button-prepend=&quot;fa fa-save&quot;</strong>&gt;Save&lt;/a&gt;</pre>
+			<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading" button-prepend="fa fa-save">Save</a>
+
+			<h2>Custom spinner icons</h2>
+			<h3>Custom spinner<h3>	
+			<pre>&lt;a class=&quot;btn btn-success&quot; ng-click=&quot;toggleLoading()&quot; <strong>button-spinner=&quot;loading&quot; spinning-icon=&quot;fa fa-circle-o-notch fa-spin&quot;</strong>&gt;Save&lt;/a&gt;</pre>
+			<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading" spinning-icon="fa fa-circle-o-notch fa-spin">Save</a><br/>
+			<h3>Custom spinner with append<h3>
+			<pre>&lt;a class=&quot;btn btn-success&quot; ng-click=&quot;toggleLoading()&quot; <strong>button-spinner=&quot;loading&quot; spinning-icon=&quot;fa fa-circle-o-notch fa-spin&quot; button-append=&quot;fa fa-chevron-right&quot;</strong>&gt;Next&lt;/a&gt;</pre>
+			<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading" spinning-icon="fa fa-circle-o-notch fa-spin" button-append="fa fa-chevron-right">Next</a><br/>
+			<h3>Custom spinner with prepend<h3>
+			<pre>&lt;a class=&quot;btn btn-success&quot; ng-click=&quot;toggleLoading()&quot; <strong>button-spinner=&quot;loading&quot; spinning-icon=&quot;fa fa-save fa-spin&quot; button-prepend=&quot;fa fa-save&quot;</strong>&gt;Save&lt;/a&gt;</pre>
+			<a class="btn btn-success" ng-click="toggleLoading()" button-spinner="loading" spinning-icon="fa fa-save fa-spin" button-prepend="fa fa-save">Save</a>
+		</div>
+
+		<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js'></script>
+		<script src="dist/angular-button-spinner.js"></script>
+		<script type='text/javascript'>
+			// App
+			angular.module('MyApp', ['angular-button-spinner']);
+			
+			// Controller
+			angular.module('MyApp').controller('MyController', ['$scope','$timeout',
+				function ($scope, $timeout) {
+					
+					$scope.loading = false;
+					
+					$scope.toggleLoading = function() {
+						$scope.loading = true;
+						
+						$timeout(function() { 
+							$scope.loading = false;
+						}, 2000);
+					};
+			
+				}
+			]);
+		</script>
+
+</body>
+
+</html>

@@ -1,52 +1,65 @@
 (function () {
     angular.module('angular-button-spinner', []).directive('buttonSpinner', ["$compile", function ($compile) {
         "use strict";
-
-        var loadingIconElement, nextIconElement, backIconElement;
-        var loadingIconTemplateDefault = "<span ng-show=\"loading\">&nbsp;<i class=\"fa fa-spinner fa-spin\"></i><span/>";
-
+        
         var link = function (scope, element, attributes) {
+            
+            var spinningIconElement, buttonAppendElement, buttonPrependElement;
+            
+            var spinningIconTemplateDefault = "<span ng-show=\"spinning\">&nbsp;<i class=\"fa fa-spinner fa-spin\"></i><span/>";
+            spinningIconElement = $compile(spinningIconTemplateDefault)(scope);
+            element.append(spinningIconElement);
 
-            loadingIconElement = $compile(loadingIconTemplateDefault)(scope);
-            element.append(loadingIconElement);
-
-            attributes.$observe('loadingIcon', function (value) {
-                var loadingIconTemplate = "<span ng-show=\"loading\">&nbsp;<i class=\"" + value + "\"></i><span/>";
-                if (!!loadingIconElement) {
-                    loadingIconElement.remove();
+            attributes.$observe('spinningIcon', function (value) {
+                var spinningIconTemplate = "<span ng-show=\"spinning\">&nbsp;<i class=\"" + value + "\"></i><span/>";
+                if (!!spinningIconElement) {
+                    spinningIconElement.remove();
                 }
-                loadingIconElement = $compile(loadingIconTemplate)(scope);
-                element.append(loadingIconElement);
+                spinningIconElement = $compile(spinningIconTemplate)(scope);
+                element.append(spinningIconElement);
             });
 
-            attributes.$observe('nextIcon', function (value) {
-                if (!!nextIconElement) {
-                    nextIconElement.remove();
+            attributes.$observe('buttonAppend', function (value) {
+                if (!!buttonAppendElement) {
+                    buttonAppendElement.remove();
                 }
-                var nextIconTemplate = "<span ng-hide=\"loading\">&nbsp;<i class=\"" + value + "\"></i><span/>";
-                nextIconElement = $compile(nextIconTemplate)(scope);
-                element.append(nextIconElement);
+                var buttonAppendTemplate = "<span ng-hide=\"spinning\">&nbsp;<i class=\"" + value + "\"></i><span/>";
+                buttonAppendElement = $compile(buttonAppendTemplate)(scope);
+                element.append(buttonAppendElement);
             });
 
-            attributes.$observe('backIcon', function (value) {
-                if (!!backIconElement) {
-                    backIconElement.remove();
+            attributes.$observe('buttonPrepend', function (value) {
+                if (!!buttonPrependElement) {
+                    buttonPrependElement.remove();
                 }
-                var backIconTemplate = "<span>&nbsp;<i class=\"" + value + "\"></i><span/>";
-                backIconElement = $compile(backIconTemplate)(scope);
-                element.append(backIconElement);
+                var buttonPrependTemplate = "<span ng-hide=\"spinning\"><i class=\"" + value + "\"></i>&nbsp;<span/>";
+                buttonPrependElement = $compile(buttonPrependTemplate)(scope);
+                element.prepend(buttonPrependElement);
+
+                var spinningIconPrependTemplate = "<span ng-show=\"spinning\"><i class=\"fa fa-spinner fa-spin\"></i>&nbsp;<span/>";
+
+                if (scope.spinningIcon) {
+                    spinningIconPrependTemplate = "<span ng-show=\"spinning\"><i class=\"" + scope.spinningIcon + "\"></i>&nbsp;<span/>";
+                }
+                
+                if (!!spinningIconElement) {
+                    spinningIconElement.remove();
+                }
+                
+                spinningIconElement = $compile(spinningIconPrependTemplate)(scope);
+                element.prepend(spinningIconElement);
             });
         }
 
         return {
             restrict: 'A',
             scope: {
-                loading: '=buttonSpinner',
-                loadingIcon: '@?',
-                backIcon: '@?',
-                nextIcon: '@?'
+                spinning: '=buttonSpinner',
+                spinningIcon: '@?',
+                buttonPrepend: '@?',
+                buttonAppend: '@?'
             },
             link: link
         }
     }]);
-}());
+} ());
